@@ -30,12 +30,13 @@ var/
 *.manifest
 *.spec
 
-# Installer logs
+# Installer logsd
 pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
+.idea/
 .tox/
 .coverage
 .coverage.*
@@ -87,3 +88,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Test databases
+*.sqlite3
