@@ -7,16 +7,37 @@ from .serializers import AccountSerializer, CurrencySerializer, TransactionSeria
 
 
 class AccountViewSet(generics.ListCreateAPIView):
+    """
+    get:
+    Return a list of all the existing accounts.
+
+    post:
+    Create a new account.
+    """
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
 
 class CurrencyViewSet(generics.ListCreateAPIView):
+    """
+    get:
+    Return a list of available currencies.
+
+    post:
+    Create a new currency.
+    """
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
 
 
 class TransactionViewSet(generics.ListCreateAPIView):
+    """
+    get:
+    Return a list of transactions.
+
+    post:
+    Create a transaction between accounts.
+    """
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
 

@@ -1,7 +1,15 @@
 appdirs==1.4.3
+coreapi==2.3.0
+coreschema==0.0.4
+coverage==4.3.4
 Django==1.11
 djangorestframework==3.6.2
+itypes==1.1.0
+Jinja2==2.9.6
+MarkupSafe==1.0
 packaging==16.8
 pyparsing==2.2.0
 pytz==2017.2
+requests==2.13.0
 six==1.10.0
+uritemplate==3.0.0
