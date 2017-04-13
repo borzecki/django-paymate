@@ -73,8 +73,8 @@ class PaymentViewsTests(APITestCase):
     def payment(self, from_account, to_account, amount, currency=None):
         """
         Perform a payment from `from_account` to `to_account` with specified `amount` of `currency`.
-        
-        :param from_account: id of Account object (can be None) 
+
+        :param from_account: id of Account object (can be None)
         :param to_account: id of Account object (can be None)
 
         :param amount: amount to transfer between accounts

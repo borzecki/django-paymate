@@ -46,7 +46,7 @@ class AccountBalance(models.Model):
         """
         Checks if specific amount can be transferred from Account.
         Special types of `AccountBalance` instances without assigned `Account`'s are `Banks`.
-        
+
         :param amount: amount to transfer
         :return: True if conditions are met, False otherwise
         """
