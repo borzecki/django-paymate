@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.db.transaction import atomic
 from rest_framework import generics
 
@@ -44,10 +45,10 @@ class TransactionViewSet(generics.ListCreateAPIView):
     @atomic
     def perform_create(self, serializer):
         transaction = serializer.save()
-        to_balance, _ = AccountBalance.objects.get_or_create(currency=transaction.currency,
-                                                             account=transaction.to_account)
-        from_balance, _ = AccountBalance.objects.get_or_create(currency=transaction.currency,
-                                                               account=transaction.from_account)
+        to_balance = _ = AccountBalance.objects.select_for_update(). \
+            get_or_create(currency=transaction.currency, account=transaction.to_account)
+        from_balance, _ = AccountBalance.objects.select_for_update(). \
+            get_or_create(currency=transaction.currency, account=transaction.from_account)
 
         if transaction.is_pointless():
             raise PointlessTransaction()
@@ -55,7 +56,7 @@ class TransactionViewSet(generics.ListCreateAPIView):
         if not from_balance.can_transfer(transaction.amount):
             raise TransactionDenied()
 
-        to_balance.balance += transaction.amount
-        from_balance.balance -= transaction.amount
+        to_balance.balance = F('balance') + transaction.amount
+        from_balance.balance = F('balance') - transaction.amount
         to_balance.save()
         from_balance.save()
